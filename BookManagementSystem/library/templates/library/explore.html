@@ -1,0 +1,245 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Explore Books</title>
+  <link rel="stylesheet" href="{% static 'library/explore.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'library/images/favicon.ico' %}">
+
+</head>
+
+<body>
+  <div class="explorecontainer">
+    <div class="explore-navbar">
+      <img src="{% static 'library/images/logo2.png'%}" alt="logo" class="logo">
+      <nav>
+
+        <ul>
+          <li><a href="/home/" class="show active" style="color:black;">HOME</a></li>
+          <li><a class="show" href="/user-table/">MY LIST</a></li>
+
+          {% if not request.user.is_authenticated %}
+          <li><a class="show" href="/accounts/login/">LOGIN</a></li>
+          <li><a class="show" href="/accounts/register/">SIGN UP</a></li>
+          {% endif %}
+
+          {% if request.user.is_authenticated %}
+          <li><a class="show" href="/go-to-admin">ADMIN-PANEL</a></li>
+          <li><!-- Button trigger modal -->
+            <a class="show" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              LOGOUT
+            </a>
+            <!-- Modal -->
+            {% include 'library/lgmodal.html' %}
+          </li>
+          {% endif %}
+          <li>
+            <!-- Button trigger offcanavas -->
+            <a class="show" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight">
+              <div class="chip">
+                <img src="{% static 'library/images/img_avatar.png' %}" alt="" width="96" height="96">
+                <b style="color: blue;">{{request.user}}</b>
+              </div>
+            </a>
+            {% if request.user.is_authenticated %}
+            {% include 'library/profile.html' %}
+            {% endif %}
+
+          </li>
+
+        </ul>
+
+      </nav>
+    </div>
+
+
+    <div class="explore-row ">
+      <div class="explore-col1 sticky-stop">
+
+      </div>
+      <div class="explore-col2" style="opacity: 0.7;">
+        {% if messages %}
+
+        <div class="messages">
+          {% for message in messages %}
+          <h3 style="color:#FFE15D">{{message}}</h3>
+          {% endfor %}
+        </div>
+
+        {% endif %}
+
+
+        <nav class="navbar navbar-expand-lg bg-black sticky-stop" style="margin-bottom: 15px; z-index: 1;">
+          <div class="container-fluid">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if group == 'Admin'%}
+                <li class="nav-item">
+                  <a href="/explore/add-book/" class="btn btn-outline-success">
+                    <i class="bi bi-journal-check"></i> Add New Books
+                  </a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                  <div class="dropdown">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Filter By Author
+                    </button>
+                    <ul class="dropdown-menu bg-black">
+                      <li><a class="dropdown-item" href="/explore/filter/{{'A to Z'}}"><i
+                            class="bi bi-sort-alpha-down"></i> A to Z</a></li>
+                      <li><a class="dropdown-item" href="/explore/filter/{{'Z to A'}}"><i
+                            class="bi bi-sort-alpha-up-alt"></i> Z to A</a></li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <div class="dropdown">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Filter By Price
+                    </button>
+                    <ul class="dropdown-menu bg-black">
+                      <li><a class="dropdown-item" href="/explore/filter/{{'high-to-low'}}"><i
+                            class="bi bi-sort-up"></i> High to low</a></li>
+                      <li><a class="dropdown-item" href="/explore/filter/{{'low-to-high'}}"><i
+                            class="bi bi-sort-down-alt"></i> Low to high</a></li>
+                    </ul>
+
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <div class="dropdown">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Filter By Type
+                    </button>
+                    <ul class="dropdown-menu bg-black">
+                      <li><a class="dropdown-item" href="/explore/filter/{{'Edited'}}"><i class="bi bi-1-circle"></i>
+                          Edited</a></li>
+                      <li><a class="dropdown-item" href="/explore/filter/{{'Reference'}}"><i class="bi bi-2-circle"></i>
+                          Reference</a></li>
+                      <li><a class="dropdown-item" href="/explore/filter/{{'Fictious'}}"><i class="bi bi-3-circle"></i>
+                          Fictious</a></li>
+                      <li><a class="dropdown-item" href="/explore/filter/{{'Non-Fictious'}}"><i
+                            class="bi bi-4-circle"></i> Non-Fictious</a></li>
+                    </ul>
+
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <a class="btn btn-outline-success " href="/explore">
+                    <i class="bi bi-x-circle-fill"></i> Clear Filter</a>
+                  </a>
+                </li>
+
+              </ul>
+              <form class="d-flex" role="search" action="/explore/filter/{{'search'}}">
+                <input class="form-control me-2" type="search" placeholder="{{ search_value|default:'Search' }}"
+                  aria-label="Search" name="search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <div>
+          {% if search_value %}
+          <h4 style="color:#FFE15D">Showing {{book|length}} results of your search.</h4>
+          {% endif %}
+        </div>
+
+        <div class="container">
+          <div class="row">
+            {% for books in book %}
+
+            <div class="product-card p-1 m-2 text-black position-relative">
+
+              <div class="position-relative">
+                {% if books.book_pic %}
+                <img src="{{books.book_pic.url}}" alt="" width="100%;" height="350rem;">
+
+                {% else %}
+                <img src="{% static 'library/images/no_p.jpg'%}" alt="" height="350rem;" width="100%;">
+                {% endif %}
+
+                <div class="position-absolute end-0 bottom-0 card-title align-self-center">
+                  <em>
+                    <h5 class="">{{books.book_name}}</h5>
+                  </em>
+                </div>
+
+                {% if group == 'Admin'%}
+                <div class="position-absolute end-0 top-0 p-1 border rounded-1 bg-black" style="opacity: 0.8;">
+                  <a class="btn btn-outline-primary " href="/explore/update-book/{{books.id}}"><i
+                      class="bi bi-pen-fill"></i></a><br>
+                  <a class="btn btn-outline-danger mt-1" href="/explore/delete-book/{{books.id}}"><i
+                      class="bi bi-trash-fill"></i></a><br>
+                </div>
+                {% endif%}
+
+              </div>
+
+              <p class="price">₨ {{books.price|floatformat:2}} /-</p>
+              <div class="text-start">
+                <p>
+                  <strong>Author:</strong> {{books.author}} <br>
+                  <strong>Book Type:</strong> {{books.book_type}} <br>
+                  <strong>Rating:</strong> {{books.rating}}/5 ⭐
+                </p>
+              </div>
+
+
+              <a class="text-light" href="/explore/add-book-to-userlist/{{books.id}}"><button><i
+                    class="bi bi-folder-plus"></i> Add To My List</button></a>
+            </div>
+
+            {% empty %}
+            <h3 style="color: red;">
+              No Book Found!😐
+            </h3>
+            {% endfor %}
+          </div>
+        </div>
+        {% if search_value %}
+        {% if not book %}
+        <marquee behavior="alternate" direction="right">
+          <h3 style="color: red;">
+            😣 No Record found matching with <span style="color:blue;font-weight:bold">{{search_value}}!</span>
+          </h3>
+        </marquee>
+        {% endif %}
+        {% endif %}
+
+
+
+      </div>
+
+    </div>
+    <div class="rowspace">
+
+    </div>
+    {% include 'library/footer.html' %}
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

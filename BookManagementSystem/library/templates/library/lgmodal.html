@@ -1,0 +1,123 @@
+{% load static %}
+<!-- Logout Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-1">
+        <div class="modal-header bg-black">
+          <h1 class="modal-title fs-5 text-success" id="staticBackdropLabel">Hey! {{request.user.first_name|default:request.user}}</h1>
+        </div>
+        <div class="modal-body text-dark text-start">
+          <h4>Do you really want to logout? 🤔</h4>
+        </div>
+        <div class="modal-footer bg-dark">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+          <a class="btn btn-outline-success" href="/accounts/logout/">Logout</a> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Delete_Account Modal -->
+<div class="modal fade" id="Delete_Account" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content p-1">
+      <div class="modal-header bg-black">
+        <h1 class="modal-title fs-5 text-success" id="staticBackdropLabel">Hey! {{request.user.first_name|default:request.user}}</h1>
+      </div>
+      <div class="modal-body text-dark text-start ">
+        <h4>
+              Do you really want to Delete Account? 🤔<br>
+              All your data will be lost. <br>
+              <span class="text-danger">You cannot recover your Accountt !</span>
+        </h4>
+      </div>
+      <div class="modal-footer bg-dark">
+        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cancel</button>
+        <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#Delete_Account_confirm">
+          Delete Account
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Delete_Account confirm Modal -->
+<div class="modal fade" id="Delete_Account_confirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content p-1">
+      <div class="modal-header bg-black">
+        <h1 class="modal-title fs-5 text-success" id="staticBackdropLabel">Hey! {{request.user.first_name|default:request.user}}</h1>
+      </div>
+      <div class="modal-body text-dark text-start ">
+        <h4>
+              <span class="text-danger">Are you sure!</span>
+        </h4>
+      </div>
+      <div class="modal-footer bg-dark">
+        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cancel</button>
+        <a class="btn btn-outline-danger" href="/accounts/delete-user/{{request.user.id}}">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Edit Profile Modal -->
+
+<div class="modal fade" id="editprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+    <div class="modal-content p-1">
+      <div class="modal-header bg-black">
+        <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Edit Your Profile</h1>
+      </div>
+      <form action="/accounts/update-profile/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-body text-start">
+          {% if user_profile.profile_pic %}
+          <div class="position-relative" style="z-index: 1;">
+              <div class="position-absolute top-0 end-0" >
+                  <img src="{{user_profile.profile_pic.url}}" alt="" width="100px;" height="130px;" class="img-thumbnail ">
+              </div>
+          </div>
+          
+            
+          {% else %}
+          <div class="position-relative" style="z-index: 1;">
+              <div class="position-absolute top-0 end-0">
+                  <img src="{% static 'library/images/img_avatar.png'%}" alt="" class="img-thumbnail" height="100px;" width="130px;">
+              </div>
+          </div>
+              
+          {% endif %}
+
+          <label for="book_name"><i class="bi bi-person-square"></i> <b>Profile Picture</b></label><br>
+          <input type="file" class="form-control" name="profile_pic" >
+
+          <label  class="form-label mt-3"><i class="bi bi-person-fill"></i> <b>Username</b></label>
+          <input class="form-control border border-danger" type="text" value="{{request.user|default:'unknown'}}" aria-label="Disabled input example" disabled readonly>
+          <div id="emailHelp" class="form-text text-danger text-end">You can't change your username.</div>
+  
+  
+          <label class="form-label"><i class="bi bi-person-vcard-fill"></i> <b>First Name</b></label>
+          <input type="text" class="form-control" name="first_name" value="{{request.user.first_name|default:'unknown'}}">
+  
+          <label class="form-label"><i class="bi bi-person-vcard-fill"></i> <b>Last Name</b></label>
+          <input type="text" class="form-control" name="last_name" value="{{request.user.last_name|default:'unknown'}}">
+  
+          <label class="form-label"><i class="bi bi-envelope-at-fill"></i> <b>Email</b></label>
+          <input type="email" class="form-control" name="email" value="{{request.user.email|default:'unknown'}}">
+
+          <input style="visibility: hidden" name="path" value="{{request.path}}">
+  
+          
+        </div>
+        <div class="modal-footer bg-dark"  >
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-outline-success">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

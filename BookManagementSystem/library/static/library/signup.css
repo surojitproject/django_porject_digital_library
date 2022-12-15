@@ -1,0 +1,228 @@
+html {
+  
+  min-height: 100%;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url(images/registration.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  /* background: url(image.jpg) center center cover no-repeat fixed; */
+
+}
+
+@media only screen and (max-width: 767px) {
+  html {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url(images/registration.jpg);
+  }
+}
+body{
+  background: transparent;
+  margin: 0;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+
+/* Payment and billing css */
+
+.loginctn{
+
+  padding: 2% 35%;
+  overflow: auto;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  padding: 5px 20px 0px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  font-family: 'Poppins', sans-serif;
+
+
+}
+
+input[type=text], input[type=password],input[type=email] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  /* background-color: green; */
+  opacity: 0.3;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus  {
+  background-color: #ddd;
+  outline: none;
+  opacity: 0.8;
+}
+
+label {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 10px;
+  display: block;
+  color:aliceblue;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+h1{
+  color: aliceblue;
+}
+
+.btn {
+  background-color: #400D51;
+  color: aliceblue;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+.signupbtn {
+  width: 100%;
+
+
+	background-color: #400D51;
+  color: aliceblue;
+  padding: 12px 30px;
+  margin: 10px 0;
+  border: none;
+
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  display: inline-block;
+}
+
+.signupbtn:hover{
+  background-color: #45a049;
+}
+
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+/* css for footer */
+.bottom-container{
+
+  padding: 50px 0 40px;
+  text-align: center;
+  border-top: 0.5px solid lightgrey;
+  font-family: 'Montserrat', sans-serif;
+  background-color: black;
+  color: silver;}
+
+  .bottom-container a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px 20px;
+  }
+.bottom-container p {
+ color: #fff;
+}
+
+/* home button */
+.nav{
+  position: fixed;
+  top:1%;
+  left:1%;
+
+}
+.myBtn {
+  top: 25%;
+  right: 22%;
+  margin: 2px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+    
+  padding: 15px;
+  border-radius: 50%;
+
+}
+
+.myBtn:hover {
+  background-color: #555;
+}
+
+.nav_icon{
+  height: 30px;
+  width: 30px;
+}
+
+.messages{
+  padding: 15px;
+  color: #C70D3A;
+}
+
+span.psw {
+  float: right;
+  color: #CD104D;
+  padding-top: 16px;
+  font-family: 'Montserrat', sans-serif;
+}
+span a{
+  text-decoration: none;
+  color: aliceblue;
+}
+
+form h1,p{
+  margin-bottom: 10px;
+}
+
+form .bi{
+  font-size: 25px;
+}
+
+form error{
+  margin-left: 1%;
+}
+form .login-link a{
+  text-decoration: none;
+  cursor: pointer;
+  
+}

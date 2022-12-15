@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'library/footer.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <footer>
+        <div class="rowfooter">
+            <div class="colfooter">
+                <img src="{% static 'library/images/logo2.png' %}" alt="" class="footerlogo">
+                <p>Find millions of books to learn from. 
+                    Dive into the ocean of books. Make your self ahead of the world with right knowledge.</p>
+            </div>
+            <div class="colfooter">
+                <h3>Office <div class="underline"><span></span></div></h3>
+                <p>ITPL Road</p>
+                <p>Whitefield, Mumbai</p>
+                <p>Maharashtra, pin 4000078, India</p>
+                <p class="email-id">surojitrmaity@gmail.com</p>
+                <h4>+91 - 0123456789</h4>
+            </div>
+            <div class="colfooter">
+                <h3>Links <div class="underline"><span></span></div></h3>
+                <ul>
+                     <li><a href="">Home</a></li>
+                     <li><a href="">Services</a></li>
+                     <li><a href="">About-Us</a></li>
+                     <li><a href="">Features</a></li>
+                     <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="colfooter">
+                <h3>News letter <div class="underline"><span></span></div></h3>
+                <form action="">
+                    <i class="bi bi-envelope-check"></i>
+                    <input type="email" placeholder="Enter your email id" required>
+                    <button type="submit"><i class="bi bi-arrow-right"></i></button>
+                </form>
+                <div class="social-icons">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-whatsapp"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter"></i>
+
+                </div>
+            </div>
+             
+        </div>
+        <hr>
+        <p class="copyright">Surojit's Django Project © 2022 - All Rights Reserved</p>
+    </footer>
+    
+</body>
+</html>

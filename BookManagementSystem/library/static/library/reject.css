@@ -1,0 +1,33 @@
+html {
+    min-height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/permission.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    /* background: url(image.jpg) center center cover no-repeat fixed; */
+
+ }
+
+ body{
+    background: transparent;
+    
+}
+
+ @media only screen and (max-width: 767px) {
+    html {
+      background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/permission.jpg);
+    }
+  }
+
+
+.blink {
+   animation: blinker 1.5s linear infinite;
+   color: red;
+   font-family: sans-serif;
+}
+@keyframes blinker {
+   50% {
+       opacity: 0;
+   }
+}

@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:700&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    min-height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/homebg1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    /* background: url(image.jpg) center center cover no-repeat fixed; */
+
+ }
+
+ body{
+    background: transparent;
+    
+}
+
+ @media only screen and (max-width: 767px) {
+    html {
+       background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/homebg1.jpg);
+    }
+  }
+
+
+.navbar{
+    height: 7rem;
+    width: 100%;
+    display: flex;
+    background: rgba(192, 192, 192,0.5);
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     
+}
+
+.navbar .logo{
+    width: 300px;
+    margin-left: 8%;  
+}
+
+.navbar nav{
+    flex: 1;
+    text-align: right;
+    margin-right: 40px;
+
+}
+.navbar nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 5px;
+    
+}
+ 
+.navbar nav ul li a.show{
+    text-decoration: none;
+    color: black;
+    font-size:18px; 
+    transition: .4s;
+    padding: 5px 20px;
+}
+
+.navbar nav ul li a.active,
+.navbar nav ul li a.show:hover{
+    background:#395144;
+    color: silver;
+    border-radius: 2px;
+}
+.rowspace{
+    width: 100%;
+    height: 10rem;
+}
+.rowhome{
+    display: flex;
+    height: 88%;
+    align-items: center;
+    margin-left: 8%;
+    margin-right: 8%;
+    
+}
+
+
+.colhome1 h1{
+    color: #fff;
+    font-size: 80px;
+}
+
+.colhome1 p{
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.colhome1 button{
+    width: 180px;
+    color: #000;
+    font-size: 12px;
+    padding: 12px ;
+    border: 0;
+    cursor: pointer;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 30px;
+}
+
+.colhome2 .card{
+    width: 13rem;
+    height: 14rem;
+    display: inline-block;
+    border-radius:1rem;
+ 
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 10px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+    opacity: 0.6;
+     
+}
+ 
+.colhome1{
+    flex-basis: 50%;
+}
+
+.colhome2 {
+    flex-basis: 50%;
+    overflow: hidden;
+}
+    
+ 
+
+.colhome2 .card1{
+    background-image:  url(images/card1.jpg);
+
+}
+
+.colhome2 .card2{
+    background-image:  url(images/card2.jpg);
+}
+
+.colhome2 .card3{
+    background-image:  url(images/card3.gif);
+}
+
+.colhome2 .card4{
+    background-image:  url(images/card4.jpg);
+}
+
+.colhome2 .card:hover{
+    transform: translateY(-10px);
+}
+
+
+.colhome2 div.card {
+     
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+.colhome1 .button{
+    font-size: 15px;
+}
+
+.navbar li .bi{
+    font-size: 25px;
+    
+}
+.blink {
+    animation: blinker 1.5s linear infinite;
+    color: red;
+    font-family: sans-serif;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: grey;
+  }
+  
+.chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'library/profile.css' %}">
+</head>
+<body>
+
+  <div class="offcanvas offcanvas-end bg-secondary p-2 overflow-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header bg-black">
+      <h1 class="offcanvas-title text-success" id="offcanvasRightLabel">{{request.user}}'s Profile</h1>
+      <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="">
+      <div class="profilecard">
+        {% if user_profile.profile_pic %}
+          <img src="{{user_profile.profile_pic.url}}" alt="" width="100%;" class="img-thumbnail">
+          
+        {% else %}
+          <img src="{% static 'library/images/img_avatar.png' %}" alt="John" style="width:100%;" class="img-thumbnail" >
+        {% endif %}
+        
+        <h1>{{request.user.get_full_name|default:'Unknown'}}</h1>
+        <p class="profiletitle"><b>{{request.user.email|default:'Unknown'}}</b></p>
+        <p>
+          <!-- Button trigger modal -->
+          <button type="button"  data-bs-toggle="modal" data-bs-target="#editprofile">
+            Edit Profile
+          </button>
+        </p>
+      </div>
+    </div>
+    <p>
+      <a class="btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        More
+      </a>
+    </p>
+    <div class="collapse text-start" id="collapseExample">
+      <div class="card card-body bg-dark">
+       <p class="text-success"><b>First Name</b> - <span class="text-light">{{request.user.first_name|default:'Unknown'}}</span></p>
+       <p class="text-success"><b>Last Name</b> - <span class="text-light">{{request.user.last_name|default:'Unknown' }}</span></p>
+       <p class="text-success"><b>Date of Joining</b> - <span class="text-light">{{request.user.date_joined|default:'Unknown'}}</span></p>
+       <p class="text-success"><b>Last login</b> - <span class="text-light">{{request.user.last_login|default:'Unknown'}}</span></p>
+       <p class="text-success"><b>Active Member</b> - <span class="text-light">{{request.user.is_active|default:'Unknown'}}</span></p>
+        {% if request.user.is_authenticated %}
+        <!-- Button trigger modal -->
+            <a class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#Delete_Account">
+              Delete Account
+            </a>
+            <!-- Modal -->
+            {% include 'library/lgmodal.html' %}
+        
+        {% endif %}</p>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
